@@ -1,3 +1,5 @@
+import 'package:chat_app/presentation/widgets/chat/her_message_bubble.dart';
+import 'package:chat_app/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -35,7 +37,9 @@ class _ChatView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 200,
                 itemBuilder: (context, index) {
-                  return ListTile(title: Text('Message $index'));
+                  return index % 2 == 0
+                      ? const HerMessageBubble()
+                      : const MyMessageBubble();
                   // You can customize the message widget here
                 },
               ),
