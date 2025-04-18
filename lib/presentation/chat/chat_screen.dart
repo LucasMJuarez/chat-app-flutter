@@ -18,6 +18,31 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
       ),
+      body: _ChatView(),
+    );
+  }
+}
+
+class _ChatView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: 200,
+                itemBuilder: (context, index) {
+                  return ListTile(title: Text('Message $index'));
+                  // You can customize the message widget here
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
