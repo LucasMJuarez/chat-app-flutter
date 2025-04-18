@@ -28,8 +28,25 @@ class HerMessageBubble extends StatelessWidget {
         ),
         SizedBox(height: 5),
 
-        //todo image
+        _ImageBubble(),
+        SizedBox(height: 10),
       ],
+    );
+  }
+}
+
+class _ImageBubble extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      child: Image.network(
+        'https://yesno.wtf/assets/no/5-73e4adfe4da265a646fe517128bb5bf2.gif',
+        width: size.width * 0.7,
+        height: 150,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }
