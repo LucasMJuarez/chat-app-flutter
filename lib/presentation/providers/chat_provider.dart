@@ -2,7 +2,7 @@ import 'package:chat_app/domain/entities/message.dart';
 import 'package:flutter/material.dart';
 
 class ChatProvider extends ChangeNotifier {
-  List<Message> message = [
+  List<Message> messageList = [
     Message(text: 'Hola, ¿cómo estás?', fromWho: FromWho.me),
     Message(text: "Ya regresaste de la playa", fromWho: FromWho.me),
   ];
