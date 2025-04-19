@@ -56,7 +56,12 @@ class _ChatView extends StatelessWidget {
             ),
 
             ///Caja de texto para escribir el mensaje
-            MessageFieldBox(),
+            MessageFieldBox(
+              onValue: (value) {
+                if (value.isEmpty) return;
+                chatProvider.sendMessage(value);
+              },
+            ),
           ],
         ),
       ),
