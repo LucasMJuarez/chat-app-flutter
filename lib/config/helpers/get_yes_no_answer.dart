@@ -1,4 +1,5 @@
 import 'package:chat_app/domain/entities/message.dart';
+import 'package:chat_app/infrastructure/models/yes_no_model.dart';
 import 'package:dio/dio.dart';
 
 class GetYesNoAnswer {
@@ -9,8 +10,12 @@ class GetYesNoAnswer {
       options: Options(headers: {'Accept': 'application/json'}),
     );
 
-    throw UnimplementedError(
-      'Implementar la lógica para obtener la respuesta de la API.',
+    final yesNoModel = YesNoModel.fromJsonMap(response.data);
+
+    return Message(
+      text: yesNoModel.answer,
+      fromWho: FromWho.hers,
+      imageUrl: yesNoModel.image,
     );
   }
 }
