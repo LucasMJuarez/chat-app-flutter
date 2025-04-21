@@ -23,8 +23,10 @@ class ChatProvider extends ChangeNotifier {
   }
 
   Future<void> herReply() async {
-    await Future.delayed(const Duration(seconds: 1));
     final herMessage = await getYesNoAnswer.getAnswer();
+    messageList.add(herMessage);
+    notifyListeners(); // Notifica a los widgets que dependen de este provider
+    moveScrollToBottom(); // Desplaza la vista hacia abajo después de recibir la respuesta
   }
 
   Future<void> moveScrollToBottom() async {
