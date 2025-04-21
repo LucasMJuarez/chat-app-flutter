@@ -1,8 +1,10 @@
+import 'package:chat_app/config/helpers/get_yes_no_answer.dart';
 import 'package:chat_app/domain/entities/message.dart';
 import 'package:flutter/material.dart';
 
 class ChatProvider extends ChangeNotifier {
   final ScrollController chatScrollController = ScrollController();
+  final getYesNoAnswer = GetYesNoAnswer();
 
   List<Message> messageList = [
     Message(text: 'Hola, ¿cómo estás?', fromWho: FromWho.me),
@@ -13,9 +15,16 @@ class ChatProvider extends ChangeNotifier {
     if (text.isEmpty) return; // Evita enviar mensajes vacíos
     final newMessage = Message(text: text, fromWho: FromWho.me);
     messageList.add(newMessage);
-
+    if (text.endsWith('?')) {
+      herReply(); // Espera la respuesta de la IA si el mensaje es una pregunta
+    }
     notifyListeners(); // Notifica a los widgets que dependen de este provider
     moveScrollToBottom(); // Desplaza la vista hacia abajo después de enviar el mensaje
+  }
+
+  Future<void> herReply() async {
+    await Future.delayed(const Duration(seconds: 1));
+    final herMessage = await getYesNoAnswer.getAnswer();
   }
 
   Future<void> moveScrollToBottom() async {
